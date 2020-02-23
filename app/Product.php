@@ -8,6 +8,11 @@ class Product extends Model
 {
     protected $guarded = [];
 
+    protected $hidden = [
+      'created_at',
+      'updated_at'
+    ];
+
     public function productAttribute(){
       return $this->hasMany('App\ProductAttribute', 'product_id', 'id');
     }
@@ -48,7 +53,7 @@ class Product extends Model
         } else {
 
           $attribute["value"] = $productAttribute->attributeValue()->first()->name;
-          
+
         }
 
         $attribute = (object) $attribute;
